@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晓怀的网络空间</title>
+    <!-- 引入Swiper轮播库 -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', '自定义字体', sans-serif; /* 替换为你的字体 */
+        }
+
+        /* 顶部导航栏 */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .nav-toggle {
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #666;
+            margin: 4px 0;
+        }
+
+        /* 轮播图区域 */
+        .swiper-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 70px;
+        }
+
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 服务板块 */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .service-item {
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* 子服务页面样式 */
+        .sub-service-page {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .payment-section {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        /* 底部样式 */
+        footer {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <img src="your-avatar.jpg" alt="头像" class="avatar">
+        <h1>晓怀</h1>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- 主体内容 -->
+    <main>
+        <section class="welcome">
+            <h2>欢迎来到晓怀的网络空间</h2>
+        </section>
+
+        <!-- 轮播图 -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('img1.jpg')"></div>
+                <div class="swiper-slide" style="background-image: url('img2.jpg')"></div>
+                <div class="swiper-slide" style="background-image: url('img3.jpg')"></div>
+            </div>
+            <!-- 添加分页器和导航按钮 -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- 主服务板块 -->
+        <section class="services">
+            <div class="service-item" data-service="video-editing">视频代剪</div>
+            <div class="service-item" data-service="nv-project">NV工程</div>
+            <div class="service-item">账号出售</div>
+        </section>
+
+        <!-- 子服务页面模板 -->
+        <div id="subServicePage" class="sub-service-page">
+            <div class="payment-section">
+                <h3 class="service-title"></h3>
+                <p class="price-info"></p>
+                <img src="payment-qr.jpg" alt="付款码" class="payment-qr">
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部 -->
+    <footer>
+        <a href="#contact">联系我们</a>
+        <a href="#about">关于我们</a>
+    </footer>
+
+    <!-- 引入JavaScript -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // 初始化轮播
+        new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        // 服务点击处理
+        document.querySelectorAll('.service-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const serviceType = this.dataset.service;
+                if (serviceType) {
+                    // 显示子服务页面逻辑
+  
